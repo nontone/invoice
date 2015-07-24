@@ -1,0 +1,14 @@
+<tr class='form-group nested-fields'>
+  <td>
+    <%= f.text_field :name, placeholder: 'Name', class: 'form-control' %>
+  </td>
+  <td>
+    <%= f.number_field :quantity, placeholder: 'Quantity', class: 'form-control' %>
+  </td>
+  <td>
+    <%= f.number_field :price, step: 0.01, placeholder: 'Quantity', class: 'form-control' %>
+  </td>
+  <td class='text-right'>
+    <%= f.object.amount || 0 %>
+  </td>
+</tr>

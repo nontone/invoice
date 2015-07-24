@@ -1,0 +1,8 @@
+<% content_for :header do %>
+  <h2>
+    <%= link_to fa_icon('chevron-left'), invoice_path(@invoice) %>
+    Edit Invoice <%= @invoice.number %>
+    <%= button_tag 'Save', class: 'btn btn-default pull-right', data: { form: "#edit_#{dom_id(@invoice)}" } %>
+  </h2>
+<% end %>
+<%= render 'form', invoice: @invoice %>

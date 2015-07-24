@@ -1,0 +1,24 @@
+<% content_for :header do %>
+  <h2>
+    Invoices
+    <%= link_to 'New', new_invoice_path, class: 'pull-right btn btn-default' %>
+  </h2>
+<% end %>
+<div class='row'>
+  <% @invoices.each do |invoice| %>
+    <div class='col-sm-4 col-md-3'>
+      <%= link_to invoice_path(invoice), class: 'thumbnail' do %>
+        <div class='thumbnail-body'>
+          <small><%= invoice.issue_date %></small>
+          <br>
+          <div class='content'>
+            <strong>INV-<%= invoice.number %></strong>: <%= invoice.name %>
+          </div>
+          <div class='text-right invoice-balance'>
+            Balance <%= number_with_precision(invoice.balance, precision: 2) %>
+          </div>
+        </div>
+      <% end %>
+    </div>
+  <% end %>
+</div>

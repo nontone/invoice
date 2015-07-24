@@ -1,0 +1,23 @@
+<tr class='form-group nested-fields'>
+  <% if f.object.name == 'VAT 7%' %>
+    <td colspan='4' class='text-right'><%= f.object.name %></td>
+    <td class='text-right'>0</td>
+  <% else %>
+    <td>
+      <%= f.select :kind, options_for_select(Extra.kinds.keys, selected: f.object.kind), {}, class: 'form-control' %>
+    </td>
+    <td>
+      <%= f.text_field :name, placeholder: 'Name', class: 'form-control' %>
+    </td>
+    <td>
+      <%= Extra.kinds[f.object.method] %>
+      <%= f.select :method, options_for_select(Extra.methods.keys, selected: f.object.method), {}, class: 'form-control' %>
+    </td>
+    <td>
+      <%= f.number_field :value, placeholder: 'Name', class: 'form-control' %>
+    </td>
+    <td class='text-right'>
+      <%= f.object.amount || 0 %>
+    </td>
+  <% end %>
+</tr>

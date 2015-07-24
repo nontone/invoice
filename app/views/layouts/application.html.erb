@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Billing</title>
+  <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
+  <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
+  <%= csrf_meta_tags %>
+</head>
+<body>
+
+<header>
+  <div class='container'>
+    <%= content_for(:header) %>
+  </div>
+  <%= render 'application/flash' %>
+</header>
+<div class='container'>
+  <%= yield %>
+</div>
+<footer>
+  <div class='container'>
+    witness me; to valhalla
+    <%= link_to "@nontone", "http://nontone.com", class: 'pull-right' %>
+  </div>
+</footer>
+
+</body>
+</html>

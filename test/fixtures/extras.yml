@@ -1,0 +1,13 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  kind: 
+  name: MyString
+  method: 
+  value: 
+
+two:
+  kind: 
+  name: MyString
+  method: 
+  value: 

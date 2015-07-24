@@ -1,0 +1,8 @@
+<% content_for :header do %>
+  <h2>
+    <%= link_to fa_icon('chevron-left'), invoices_path %>
+    New Invoice
+    <%= button_tag 'Save', class: 'btn btn-default pull-right', data: { form: '#new_invoice' } %>
+  </h2>
+<% end %>
+<%= render 'form', invoice: @invoice %>

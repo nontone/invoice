@@ -1,0 +1,79 @@
+<%= form_for invoice do |f| %>
+  <div class='form-group'>
+    <%= f.label :number %>
+    <%= f.text_field :number, placeholder: 'Number', class: 'form-control' %>
+  </div>
+  <div class='form-group'>
+    <%= f.label :name %>
+    <%= f.text_field :name, placeholder: 'Name', class: 'form-control' %>
+  </div>
+  <div class='form-group'>
+    <%= f.label :issue_date %>
+    <%= f.date_field :issue_date, placeholder: 'Issue date', class: 'form-control' %>
+  </div>
+
+  <h4>Line items</h4>
+  <table class='table' id='lineitems'>
+    <thead>
+      <tr>
+        <th>Name</th>
+        <th width='150'>Quantity</th>
+        <th width='150'>Price</th>
+        <th width='100' class='text-right'>Amount</th>
+      </tr>
+    </thead>
+    <tbody>
+      <%= f.fields_for :lineitems do |lineitem| %>
+        <%= render 'lineitem_fields', f: lineitem %>
+      <% end %>
+    </tbody>
+  </table>
+  <%= link_to_add_association '+ add lineitem', f, :lineitems,
+    data: {
+      association_insertion_node: '#lineitems tbody',
+      association_insertion_method: 'append'
+    } %>
+  <hr>
+
+  <h4>Extras</h4>
+  <table class='table' id='extras'>
+    <thead>
+      <tr>
+        <th width='120'>Kind</th>
+        <th>Name</th>
+        <th width='150'>Method</th>
+        <th width='150'>Value</th>
+        <th width='100' class='text-right'>Amount</th>
+      </tr>
+    </thead>
+    <tbody>
+      <%= f.fields_for :extras do |extra| %>
+        <%= render 'extra_fields', f: extra %>
+      <% end %>
+    </tbody>
+  </table>
+  <%= link_to_add_association '+ add extra', f, :extras,
+    data: {
+      association_insertion_node: '#extras tbody',
+      association_insertion_method: 'append'
+    } %>
+  <hr>
+
+  <div class='clearfix'>
+    <dl class='dl-horizontal pull-right'>
+      <dt>Total</dt>
+      <dd class='text-right'>
+        <%= number_with_precision(@invoice.total, precision: 2) %>
+      </dd>
+      <dt>VAT 7%</dt>
+      <dd class='text-right'>
+        <%= number_with_precision(@invoice.total * 0.07, precision: 2) %>
+      </dd>
+      <dt>Balance</dt>
+      <dd class='text-right'>
+        <%= number_with_precision(@invoice.balance, precision: 2) %>
+      </dd>
+    </dl>
+  </div>
+  <%= f.submit name: nil, class: 'btn btn-default hidden' %>
+<% end %>

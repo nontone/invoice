@@ -1,0 +1,7 @@
+<% flash.each do |name, message| %>
+  <%= alert_box context: bootstrap_flash_class(name), dismissible: true do %>
+    <div class='container'>
+      <%= message.kind_of?(Array) ? message.join(', ') : message %>
+    </div>
+  <% end %>
+<% end %>

@@ -1,0 +1,79 @@
+<% content_for :header do %>
+  <h2>
+    <%= link_to fa_icon('chevron-left'), invoices_path %>
+    Invoice <%= @invoice.number %>
+    <%= link_to 'Edit', edit_invoice_path(@invoice), class: 'pull-right btn btn-default' %>
+  </h2>
+<% end %>
+<p>
+  <small><%= @invoice.issue_date %></small>
+</p>
+
+<h4>Line items</h4>
+<table class='table'>
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th width='100' class='text-right'>Quantity</th>
+      <th width='100' class='text-right'>Price</th>
+      <th width='100' class='text-right'>Amount</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @invoice.lineitems.each do |lineitem| %>
+      <tr>
+        <td><%= lineitem.name %></td>
+        <td class='text-right'><%= lineitem.quantity %></td>
+        <td class='text-right'><%= lineitem.price %></td>
+        <td class='text-right'><%= lineitem.amount %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+<div class='clearfix'>
+  <dl class='dl-horizontal pull-right'>
+    <dt>Subtotal</dt>
+    <dd><%= @invoice.sub_total %></dd>
+  </dl>
+</div>
+<hr>
+
+<h4>Extras</h4>
+<table class='table'>
+  <thead>
+    <tr>
+      <th width='120'>Kind</th>
+      <th>Name</th>
+      <th width='100'>Method</th>
+      <th width='100' class='text-right'>Value</th>
+      <th width='100' class='text-right'>Amount</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @invoice.extras.each do |extra| %>
+      <tr>
+        <td><%= extra.kind %></td>
+        <td><%= extra.name %></td>
+        <td><%= extra.method %></td>
+        <td class='text-right'><%= extra.value %></td>
+        <td class='text-right'><%= extra.amount %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+<div class='clearfix'>
+  <dl class='dl-horizontal pull-right'>
+    <dt>Total</dt>
+    <dd class='text-right'>
+      <%= number_with_precision(@invoice.total, precision: 2) %>
+    </dd>
+    <dt>VAT 7%</dt>
+    <dd class='text-right'>
+      <%= number_with_precision(@invoice.total * 0.07, precision: 2) %>
+    </dd>
+    <dt>Balance</dt>
+    <dd class='text-right'>
+      <%= number_with_precision(@invoice.balance, precision: 2) %>
+    </dd>
+  </dl>
+</div>
