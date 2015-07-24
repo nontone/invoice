@@ -16,21 +16,23 @@
     <%= f.date_field :issue_date, placeholder: 'Issue date', class: 'form-control' %>
   </div>
 
-  <table class='table table-condensed' id='lineitems'>
-    <thead>
-      <tr>
-        <th>Name</th>
-        <th width='150'>Quantity</th>
-        <th width='150'>Price</th>
-        <th width='100' class='text-right'>Amount</th>
-      </tr>
-    </thead>
-    <tbody>
-      <%= f.fields_for :lineitems do |lineitem| %>
-        <%= render 'lineitem_fields', f: lineitem %>
-      <% end %>
-    </tbody>
-  </table>
+  <div class='table-responsive'>
+    <table class='table table-condensed table-responsive' id='lineitems'>
+      <thead>
+        <tr>
+          <th>Name</th>
+          <th width='150'>Quantity</th>
+          <th width='150'>Price</th>
+          <th width='100' class='text-right'>Amount</th>
+        </tr>
+      </thead>
+      <tbody>
+        <%= f.fields_for :lineitems do |lineitem| %>
+          <%= render 'lineitem_fields', f: lineitem %>
+        <% end %>
+      </tbody>
+    </table>
+  </div>
   <%= link_to_add_association '+ add lineitem', f, :lineitems,
     data: {
       association_insertion_node: '#lineitems tbody',
@@ -45,22 +47,24 @@
   </div>
 
   <h4>Extras</h4>
-  <table class='table table-condensed' id='extras'>
-    <thead>
-      <tr>
-        <th width='120'>Kind</th>
-        <th>Name</th>
-        <th width='150'>Method</th>
-        <th width='150'>Value</th>
-        <th width='100' class='text-right'>Amount</th>
-      </tr>
-    </thead>
-    <tbody>
-      <%= f.fields_for :extras do |extra| %>
-        <%= render 'extra_fields', f: extra %>
-      <% end %>
-    </tbody>
-  </table>
+  <div class='table-responsive'>
+    <table class='table table-condensed' id='extras'>
+      <thead>
+        <tr>
+          <th width='120'>Kind</th>
+          <th>Name</th>
+          <th width='150'>Method</th>
+          <th width='150'>Value</th>
+          <th width='100' class='text-right'>Amount</th>
+        </tr>
+      </thead>
+      <tbody>
+        <%= f.fields_for :extras do |extra| %>
+          <%= render 'extra_fields', f: extra %>
+        <% end %>
+      </tbody>
+    </table>
+  </div>
   <%= link_to_add_association '+ add extra', f, :extras,
     data: {
       association_insertion_node: '#extras tbody',

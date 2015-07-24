@@ -21,26 +21,28 @@
   <dd><%= @invoice.issue_date.strftime("%d %b %Y") %></dd>
 </dl>
 
-<table class='table table-condensed'>
-  <thead>
-    <tr>
-      <th>Name</th>
-      <th width='100'>Quantity</th>
-      <th width='100' class='text-right'>Price</th>
-      <th width='100' class='text-right'>Amount</th>
-    </tr>
-  </thead>
-  <tbody>
-    <% @invoice.lineitems.each do |lineitem| %>
+<div class='table-responsive'>
+  <table class='table table-condensed'>
+    <thead>
       <tr>
-        <td><%= lineitem.name %></td>
-        <td><%= lineitem.quantity %></td>
-        <td class='text-right'><%= lineitem.price %></td>
-        <td class='text-right'><%= lineitem.amount %></td>
+        <th>Name</th>
+        <th width='100'>Quantity</th>
+        <th width='100' class='text-right'>Price</th>
+        <th width='100' class='text-right'>Amount</th>
       </tr>
-    <% end %>
-  </tbody>
-</table>
+    </thead>
+    <tbody>
+      <% @invoice.lineitems.each do |lineitem| %>
+        <tr>
+          <td><%= lineitem.name %></td>
+          <td><%= lineitem.quantity %></td>
+          <td class='text-right'><%= lineitem.price %></td>
+          <td class='text-right'><%= lineitem.amount %></td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+</div>
 <div class='clearfix'>
   <dl class='dl-horizontal pull-right'>
     <dt>Subtotal</dt>
@@ -49,28 +51,30 @@
 </div>
 
 <h4>Extras</h4>
-<table class='table table-condensed'>
-  <thead>
-    <tr>
-      <th width='120'>Kind</th>
-      <th>Name</th>
-      <th width='100'>Method</th>
-      <th width='100' class='text-right'>Value</th>
-      <th width='100' class='text-right'>Amount</th>
-    </tr>
-  </thead>
-  <tbody>
-    <% @invoice.extras.each do |extra| %>
+<div class='table-responsive'>
+  <table class='table table-condensed'>
+    <thead>
       <tr>
-        <td><%= extra.kind %></td>
-        <td><%= extra.name %></td>
-        <td><%= extra.method %></td>
-        <td class='text-right'><%= extra.value %></td>
-        <td class='text-right'><%= extra.amount %></td>
+        <th width='120'>Kind</th>
+        <th>Name</th>
+        <th width='100'>Method</th>
+        <th width='100' class='text-right'>Value</th>
+        <th width='100' class='text-right'>Amount</th>
       </tr>
-    <% end %>
-  </tbody>
-</table>
+    </thead>
+    <tbody>
+      <% @invoice.extras.each do |extra| %>
+        <tr>
+          <td><%= extra.kind %></td>
+          <td><%= extra.name %></td>
+          <td><%= extra.method %></td>
+          <td class='text-right'><%= extra.value %></td>
+          <td class='text-right'><%= extra.amount %></td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+</div>
 
 <div class='clearfix'>
   <dl class='dl-horizontal pull-right'>
