@@ -12,10 +12,10 @@ gem 'jquery-rails'
 gem 'turbolinks'
 gem 'bootstrap-sass', '~> 3.3.5.1'
 gem 'font-awesome-rails', '~> 4.3.0.0'
+gem 'bh', '~> 1.2'
 
 # common
 gem 'cocoon'
-gem 'bh', '~> 1.2'
 
 # api
 gem 'jbuilder', '~> 2.0'
